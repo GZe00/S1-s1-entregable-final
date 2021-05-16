@@ -1,38 +1,107 @@
-.App {
+
+/* Fuente de la cita| */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+/* Fuente del autor */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+/* Fuente del hipervinculo */
+@import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
+
+.bg{
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  /* background-color: #242a35; */
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* font-size: calc(10px + 2vmin); */
+  /* color: rgb(0, 0, 0); */
 }
 
-.App-link {
-  color: #61dafb;
+/* .bg-box{
+  border: 2px #000000 solid;
+  padding: 20px 0 20px 0;
+} */
+
+
+.box-h1{
+  /* border: 2px solid #000000; */
+  position: absolute;
+  width: 90%;
+  height: 15%;
+  margin: 1%;
+  padding: 2%;
+  font-family: 'Cinzel', serif;
+  font-weight: 400;
+  top: 0%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.box-h3{
+    position: fixed;
+    top: 45%;
+    left: 43%;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+}
+
+.btn-position{
+  position: absolute;
+  margin-top: 300px;
+  left: 43%;
+  top: 20%;
+}
+
+.btn-style{
+  /* position: block; */
+  /* flex-direction: row; */
+  /* left: 75%;
+  top: 25%; */
+  font-size: 180%;
+  border-radius: 15px;
+  padding: 1%;
+  background-color: #ffffffa4;
+  box-shadow:         0px 0px 20px 0px rgba(50, 50, 50, 1);
+  font-family: 'Playfair Display', serif;
+}
+
+button:hover{
+  cursor:pointer;
+}
+
+h1,h3:hover{
+  cursor:default;
+}
+
+.size-mark{
+  font-size: 70px;
+  font-family: 'Playfair Display', serif;
+}
+
+.pos-twitter{
+  width:15%;
+  height: 165px;
+  border: 2.5px solid #000;
+  position: absolute;
+  border-radius: 8px;
+  top: 60%;
+  left: 75%;
+}
+
+.bg-tw{
+  background: rgba(0, 0, 0, 0.357);
+}
+
+.lett-tw{
+  color:#FFFFFF;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: 'Playball', cursive;
+}
+
+.img-twitter{
+  margin-top: 5px;
+  width: 100px;
 }
