@@ -2,66 +2,95 @@ import React, { useState, useEffect } from 'react';
 import QuotePrint from './QuotePrint';
 import twitter from '.././media/twitter.png';
 
-//`
 
 const QuoteContainer = () => {
 
+    //useEffect para datos del JSON
     const [data, setData] = useState(null);
-
     const [quote, setQuote] = useState('');
     const [author, setAuthor] = useState('');
 
+
+    //hooks para el fondo random con rgb
     const [color1, setColor1] = useState(255);
     const [color2, setColor2] = useState(255);
     const [color3, setColor3] = useState(255);
 
+    //texto contrasta al fondo
     const [colorText, setColorText] = useState(0);
 
+    //Limite del tamaño de la cadena de texto, para que se pueda publicar el tweet
+    const limit = 182;
+
+    //La cita y el autor estarán cambiando y al final se actualizará con el hook tweet2
+    //el tweet1, tweet3, enter y espacio son las cadenas predifinidas que no van a cambiar y se concadenarán con el hook
+    //una vez modificada la cita y el autor del JSON
     const tweet1 = 'https://twitter.com/intent/tweet?text=%E2%80%9C';
-
-    const [tweet2, setTweet2] = useState('');
-
     const tweet3 = '%0AEsta%20cita%20me%20encant%C3%B3,%20descubre%20tu%20cita%20ideal!%0AVisita%3A%20https%3A//quotes-by-moises.netlify.app/';
-    const urlTweet = 'https://quotes-by-moises.netlify.app/'
     const enter = '%0A';
     const spaceTwwt = '%20';
 
+    const [tweet2, setTweet2] = useState('');
+
+    //URL del fetch
     const url = 'https://gist.githubusercontent.com/carmandomx/3d7ac5f15af87a587e1d25f5ba96de61/raw/e2d848b87c730a580077de221666343c15b1a243/gistfile1.txt';
 
 
+
+    //Logica que llevará a cabo el cambio de cita y autor
     useEffect(() => {
         if (quote && author) {
+
+            //String a Array
             let quoteArr = quote.split('');
             let authorArr = author.split('');
             let textFinal = '';
 
-            for (let i = 0; i < quoteArr.length; i++) {
-                if (quoteArr[i] == ' ') {
-                    quoteArr.splice(i, 1, spaceTwwt);
+            //Si la cadena de texto de la cita excede el limite definido, se cortará la cita y se añadirá al final
+            //puntos suspensivos
+            if (quoteArr.length >= limit) {
+                for (let i = 0; i <= limit; i++) {
+                    if (quoteArr[i] == ' ') {
+                        quoteArr.splice(i, 1, spaceTwwt);
+                    }
+                    if (i == limit) {
+                        quoteArr.splice(i,quoteArr.length);
+                        quoteArr.push(spaceTwwt);
+                        quoteArr.push('...');
+                        quoteArr.push(enter);
+                    }
                 }
-                if (i == quoteArr.lastIndexOf('.')) {
-                    quoteArr.push(enter);
+                //El tamaño de la cita no excede y no habrá problema alguno para su publicación
+            } else {
+                for (let i = 0; i < quoteArr.length; i++) {
+                    if (quoteArr[i] == ' ') {
+                        quoteArr.splice(i, 1, spaceTwwt);
+                    }
+                    if (i == quoteArr.lastIndexOf('.')) {
+                        quoteArr.push(enter);
+                    }
                 }
             }
 
+            //Misma logica de la cita, pero para el autor
             for (let i = 0; i < author.length; i++) {
                 if (author[i] == ' ') {
                     authorArr.splice(i, 1, spaceTwwt);
                 }
             }
 
+            //Array a String
             quoteArr = quoteArr.join('');
             authorArr = authorArr.join('');
             textFinal = quoteArr + authorArr;
 
-            // console.log(tweet1 + textFinal + tweet3);
+            //Hook
             setTweet2(textFinal);
         }
 
     }, [quote, author])
 
-    // const logo = require('.././media/twitter.png'); 
-
+    //Se ejecutará 1 vez y será el inicio
     useEffect(() => {
         fetch(url)
             .then(response => response.json())
@@ -74,14 +103,14 @@ const QuoteContainer = () => {
     useEffect(() => {
         if (data) {
             getData();
-            console.log(setTweet2());
+
         }
     }, [data]);
 
     const newQuote = () => {
         getData();
         newBg();
-        console.log(tweet2);
+
     }
 
     const newBg = () => {
